@@ -2,7 +2,7 @@ package com.davidleonm
 
 import com.davidleonm.GlobalVariables
 
-class WeatherStationDashboardVariables extends GlobalVariables {
+class WeatherStationDashboardVariables {
   // Github repository name
   static String RepositoryName = 'weather-station-project/dashboard'
 
