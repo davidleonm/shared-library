@@ -1,11 +1,11 @@
 def call(boolean all, boolean force) {
     def command = 'docker image prune '
 
-    if (all != null) {
+    if (all) {
         command = "${command} --all "
     }
 
-    if (force != null) {
+    if (force) {
         command = "${command} --force"
     }
 
