@@ -10,8 +10,11 @@ def call(String registryAddress, String registryName, String credentialsKey, Str
       }
   } finally {
     if (dockerImage != null) {
-        def registryAddressWithoutHttp = "${registryAddress}".replace('http://', '')
+        if (labelName != null && labelValue != null) {
+            sh "docker image prune --filter label=${labelName}=${labelValue} --force"
+        }
 
+        def registryAddressWithoutHttp = "${registryAddress}".replace('http://', '')
         sh """
            docker image prune --filter label=${labelName}=${labelValue} --force
            docker rmi -f ${registryAddressWithoutHttp}${registryName}:${imageTag}
