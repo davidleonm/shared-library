@@ -14,12 +14,11 @@ def call(String registryAddress, String registryName, String credentialsKey, Str
               sh "docker image prune --filter label=${labelName}=${labelValue} --force"
           }
 
-            def registryAddressWithoutHttp = "${registryAddress}".replace('http://', '')
-            sh """
-               docker image prune --filter label=${labelName}=${labelValue} --force
-               docker rmi -f ${registryAddressWithoutHttp}${registryName}:${imageTag}
-               docker rmi -f ${registryAddressWithoutHttp}${registryName}:latest
-               """
+          def registryAddressWithoutHttp = "${registryAddress}".replace('http://', '')
+          sh """
+             docker rmi -f ${registryAddressWithoutHttp}${registryName}:${imageTag}
+             docker rmi -f ${registryAddressWithoutHttp}${registryName}:latest
+             """
         }
     }
 }
