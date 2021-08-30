@@ -3,17 +3,19 @@ def call(String registryAddress, String registryName, String credentialsKey, Str
 
   try {
       docker.withRegistry("${registryAddress}", "${credentialsKey}") {
-      dockerImage = docker.build("${registryName}", "--file ${dockerFile} .")
+          dockerImage = docker.build("${registryName}", "--file ${dockerFile} .")
 
-      dockerImage.push('latest')
-      dockerImage.push("${imageTag}")
-    }
+          dockerImage.push('latest')
+          dockerImage.push("${imageTag}")
+      }
   } finally {
     if (dockerImage != null) {
-      sh """
-         docker rmi -f ${registryAddress}${registryName}:${imageTag}
-         docker rmi -f ${registryAddress}${registryName}:latest
-         """
+        def registryAddressWithoutHttp = "${registryAddress}".replace('http://', '')
+
+        sh """
+           docker rmi -f ${registryAddressWithoutHttp}${registryName}:${imageTag}
+           docker rmi -f ${registryAddressWithoutHttp}${registryName}:latest
+           """
     }
   }
 }
