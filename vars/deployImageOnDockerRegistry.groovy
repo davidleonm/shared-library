@@ -12,10 +12,17 @@ def call(String registryAddress, String registryName, String credentialsKey, Str
         if (dockerImage != null) {
             def registryAddressWithoutHttp = "${registryAddress}".replace('http://', '').replace('https://', '')
 
+            if (registryAddressWithoutHttp != '') {
+                sh """
+                   docker rmi --force ${registryAddressWithoutHttp}${registryName}:${imageTag}
+                   docker rmi --force ${registryAddressWithoutHttp}${registryName}:latest
+                   """
+            }
+
             sh """
-                docker rmi -f ${registryAddressWithoutHttp}${registryName}:${imageTag}
-                docker rmi -f ${registryAddressWithoutHttp}${registryName}:latest
-                """
+               docker rmi --force ${registryName}:${imageTag} || true
+               docker rmi --force ${registryName}:latest || true
+               """
         }
     }
 }
