@@ -2,7 +2,7 @@ def call(String registryAddress, String registryName, String credentialsKey, Str
   def dockerImage = null
 
   try {
-    docker.withRegistry("${registryAddress}", "${credentialsKey}") {
+      docker.withRegistry("${registryAddress}", "${credentialsKey}") {
       dockerImage = docker.build("${registryName}", "--file ${dockerFile} .")
 
       dockerImage.push('latest')
@@ -11,8 +11,8 @@ def call(String registryAddress, String registryName, String credentialsKey, Str
   } finally {
     if (dockerImage != null) {
       sh """
-         docker rmi -f ${registryName}:${imageTag}
-         docker rmi -f ${registryName}:latest
+         docker rmi -f ${registryAddress}${registryName}:${imageTag}
+         docker rmi -f ${registryAddress}${registryName}:latest
          """
     }
   }
