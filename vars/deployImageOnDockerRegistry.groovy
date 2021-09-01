@@ -1,9 +1,9 @@
-def call(String registryAddress, String registryName, String credentialsKey, String imageTag, String dockerFile) {
+def call(String registryAddress, String registryName, String credentialsKey, String imageTag, String dockerFile, String buildArgs) {
     def dockerImage = null
 
     try {
         docker.withRegistry("${registryAddress}", "${credentialsKey}") {
-            dockerImage = docker.build("${registryName}", "--file ${dockerFile} .")
+            dockerImage = docker.build("${registryName}", "${buildArgs} --file ${dockerFile} .")
 
             dockerImage.push('latest')
             dockerImage.push("${imageTag}")
