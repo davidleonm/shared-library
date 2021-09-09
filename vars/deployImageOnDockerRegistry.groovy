@@ -20,8 +20,8 @@ def call(String registryAddress, String registryName, String credentialsKey, Str
             }
 
             sh """
-               docker rmi --force ${registryName}:${imageTag} || true
-               docker rmi --force ${registryName}:latest || true
+               docker rmi --force ${registryName}:${imageTag} || echo '${registryName}:${imageTag} not found'
+               docker rmi --force ${registryName}:latest || echo '${registryName}:latest not found'
                """
         }
     }
