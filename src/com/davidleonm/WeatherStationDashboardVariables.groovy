@@ -29,13 +29,4 @@ class WeatherStationDashboardVariables {
 
   // Registry name in Docker registry to push the image for the WindMeasurementsService
   static String WindMeasurementsServiceDockerRegistryName = 'weatherstationproject/wind-measurements-service'
-
-  // Path with the React root folder
-  static String ReactRootFolder = "${WORKSPACE}/Code/src/WeatherStationProject.Dashboard.App/ClientApp"
-
-  // Path with the tools folder
-  static String ToolsFolder = "${WORKSPACE}/tools"
-
-  // Path with dotcover
-  static String DotCoverFolder = "${ToolsFolder}/dotnet-dotcover"
 }
