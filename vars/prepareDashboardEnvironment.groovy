@@ -15,4 +15,7 @@ def call() {
        rm -rf ${TOOLS_FOLDER}
        dotnet tool install JetBrains.dotCover.GlobalTool --no-cache --tool-path ${TOOLS_FOLDER}
        """
+
+    println('Installing coveralls')
+    sh 'dotnet add package coveralls.io --version 1.4.2'
 }
