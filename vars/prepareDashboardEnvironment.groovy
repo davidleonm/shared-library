@@ -17,5 +17,5 @@ def call() {
        """
 
     println('Installing coveralls')
-    sh 'dotnet tool install --global coveralls.net'
+    sh 'dotnet tool install --global coveralls.net || exit 0'
 }
