@@ -17,5 +17,5 @@ def call() {
        """
 
     println('Installing coveralls')
-    sh 'dotnet add package coveralls.io --version 1.4.2'
+    sh '( cd ./Code/ && dotnet add package coveralls.io --version 1.4.2 )'
 }
