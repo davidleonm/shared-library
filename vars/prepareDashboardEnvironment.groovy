@@ -12,10 +12,12 @@ def call() {
 
     println('Cleaning and installing dotCover')
     sh """
-       rm -rf ${TOOLS_FOLDER}
-       dotnet tool install JetBrains.dotCover.GlobalTool --no-cache --tool-path ${TOOLS_FOLDER}
+       dotnet tool install --global --no-cache JetBrains.dotCover.GlobalTool ||
+       dotnet tool update --global JetBrains.dotCover.GlobalTool
        """
 
-    println('Installing coveralls')
-    sh 'dotnet tool install --global coveralls.net || exit 0'
+    println('Cleaning and installing Codecov uploader')
+    sh """rm ${CODECOV_PATH} || exit 0
+          curl --silent https://uploader.codecov.io/latest/linux/codecov --output ${CODECOV_PATH}
+          chmod +x ${CODECOV_PATH}"""
 }
