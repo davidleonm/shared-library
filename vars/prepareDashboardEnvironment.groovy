@@ -10,10 +10,10 @@ def call() {
        ( cd ${REACT_ROOT_FOLDER} && npm install )
        """
 
-    println('Cleaning and installing dotCover')
+    println('Cleaning and installing coverlet')
     sh """
-       dotnet tool install --global --no-cache JetBrains.dotCover.GlobalTool ||
-       dotnet tool update --global JetBrains.dotCover.GlobalTool
+       dotnet tool install --global --no-cache coverlet.console ||
+       dotnet tool update --global coverlet.console
        """
 
     println('Cleaning and installing Codecov uploader')
