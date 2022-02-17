@@ -17,7 +17,9 @@ def call() {
        """
 
     println('Cleaning and installing Codecov uploader')
-    sh """rm --force ${CODECOV_PATH}
-          curl --silent https://uploader.codecov.io/latest/linux/codecov --output ${CODECOV_PATH}
-          chmod +x ${CODECOV_PATH}"""
+    sh """
+       rm --force ${CODECOV_PATH}
+       curl --silent https://uploader.codecov.io/latest/linux/codecov --output ${CODECOV_PATH}
+       chmod +x ${CODECOV_PATH}
+       """
 }
