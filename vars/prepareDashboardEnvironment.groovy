@@ -10,12 +10,6 @@ def call() {
        ( cd ${REACT_ROOT_FOLDER} && npm install )
        """
 
-    println('Cleaning and installing coverlet')
-    sh """
-       dotnet tool install --global --no-cache coverlet.console ||
-       dotnet tool update --global coverlet.console
-       """
-
     println('Cleaning and installing Codecov uploader')
     sh """
        rm --force ${CODECOV_PATH}
