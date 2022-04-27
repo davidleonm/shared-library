@@ -10,11 +10,6 @@ def call() {
        ( cd ${REACT_ROOT_FOLDER} && npm install )
        """
 
-    println('Cleaning and installing Codecov uploader')
-    sh """
-       mkdir -p ${TOOLS_FOLDER}
-       rm --force ${CODECOV_PATH}
-       curl --silent https://uploader.codecov.io/latest/linux/codecov --output ${CODECOV_PATH}
-       chmod +x ${CODECOV_PATH}
-       """
+    println('Installing coveralls')
+    sh 'dotnet tool install --global coveralls.net || dotnet tool update --global coveralls.net'
 }
