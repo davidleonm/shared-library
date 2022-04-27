@@ -10,13 +10,6 @@ def call() {
        ( cd ${REACT_ROOT_FOLDER} && npm install )
        """
 
-    println('Cleaning and installing Report generator uploader')
-    sh """
-       mkdir -p ${TOOLS_FOLDER}
-       rm --force ${REPORT_GENERATOR_PATH}
-       dotnet tool install --global dotnet-reportgenerator-globaltool
-       """
-
     println('Cleaning and installing Codecov uploader')
     sh """
        mkdir -p ${TOOLS_FOLDER}
