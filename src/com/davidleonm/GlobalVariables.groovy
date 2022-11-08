@@ -11,5 +11,5 @@ class GlobalVariables {
   static String StagingCredentialsDockerRegistryKey = 'docker-registry-login'
 
   // STAGING Docker registry address
-  static String StagingDockerRegistry = 'http://192.168.1.69:5000/'
+  static String StagingDockerRegistry = 'http://192.168.1.69:31050/'
 }
